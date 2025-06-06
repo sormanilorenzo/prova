@@ -1889,13 +1889,12 @@
                 // Tenta di inviare i risultati al webhook Discord
                 const webhookSuccess = await sendResultsToDiscord(results);
                 
-                // Mostra il messaggio appropriato in base al risultato dell'invio
+                // Mostra il messaggio appropriato in base al risultato dell'invio SENZA PUNTEGGIO
                 if (webhookSuccess) {
                     successMessage.innerHTML = `
                         <i class="fas fa-check-circle"></i>
                         <h3>Quiz inviato con successo!</h3>
                         <p>Grazie per aver completato il test. I tuoi risultati sono stati registrati.</p>
-                        <p><strong>Punteggio: ${results.correct}/${quizData.length} (${Math.round((results.correct/quizData.length)*100)}%)</strong></p>
                     `;
                     successMessage.style.display = 'block';
                     errorMessage.style.display = 'none';
@@ -1905,7 +1904,6 @@
                         <i class="fas fa-times-circle"></i>
                         <h3>Errore nell'invio del quiz</h3>
                         <p>Si è verificato un errore durante l'invio del test. Per favore, contatta l'assistenza tecnica.</p>
-                        <p><strong>Il tuo punteggio: ${results.correct}/${quizData.length} (${Math.round((results.correct/quizData.length)*100)}%)</strong></p>
                     `;
                     errorMessage.style.display = 'block';
                 }
