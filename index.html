@@ -1223,12 +1223,6 @@
             image: "image/gradi/sergentemaggiore.png"
         },
         {
-            question: "Qual è il principale carro armato in dotazione dell'Esercito Italiano?",
-            options: ["C1 Ariete", "Leopard 2A4", "M1 Abrams", "Iveco VM90"],
-            correctAnswer: 0,
-            image: ""
-        },
-        {
             question: "Quale elicottero viene usato nelle missioni d'assalto?",
             options: ["AV129 Mangusta", "Chinook CH47", "AW139 Soccorso", "C130 AM"],
             correctAnswer: 0,
@@ -1361,418 +1355,509 @@
             question: "Quale veicolo sostituirà il VCC-1 come nuovo mezzo da combattimento della fanteria?",
             options: ["Centauro II", "Dardo", "AICS (Armored Infantry Combat System)", "Puma"],
             correctAnswer: 2
-        }
+        },
+        {
+            question: "Qual è il calibro principale del carro armato Ariete?",
+            options: ["105 mm", "120 mm", "125 mm", "100 mm"],
+            correctAnswer: 1
+        },
+        {
+            question: "In quale anno è stato ufficialmente introdotto il carro Ariete nell’Esercito Italiano?",
+            options: ["1990", "1995", "2002", "1985"],
+            correctAnswer: 1
+        },
+        {
+            question: "Quale reggimento ha il motto 'Di qui non si passa'?",
+            options: ["Reggimento Lagunari Serenissima", "Reggimento San Marco", "4º Reggimento Alpini Paracadutisti", "Reggimento Carri Ariete"],
+            correctAnswer: 0
+        },
+        {
+            question: "Che tipo di unità è il ReOS (Reggimento Operazioni Speciali)?",
+            options: ["Fanteria Meccanizzata", "Forze per Operazioni Speciali", "Artiglieria a Lungo Raggio", "Unità del Genio"],
+            correctAnswer: 1
+        },
+        {
+            question: "Quale velivolo ad ala rotante è in fase di sostituzione con l’AW249 nell’Esercito Italiano?",
+            options: ["NH90", "CH-47F Chinook", "A129 Mangusta", "AB412"],
+            correctAnswer: 2
+        },
+        {
+            question: "Qual è il nome del sistema missilistico a lunga gittata in dotazione all’Esercito Italiano?",
+            options: ["HIMARS", "ASTROS II", "MLRS", "Lynx"],
+            correctAnswer: 2
+        },
+        {
+            question: "Qual è il nome del progetto per la modernizzazione del carro Ariete?",
+            options: ["Ariete 2", "Ariete NG", "AMV", "Ariete MLU"],
+            correctAnswer: 3
+        },
+        {
+            question: "Quale corpo dell'Esercito Italiano è incaricato della guerra elettronica?",
+            options: ["Genio", "Trasmissioni", "Comando C4 EI", "Cavalleggeri"],
+            correctAnswer: 2
+        },
+        {
+            question: "Qual è l'acronimo del comando che coordina le operazioni speciali dell'Esercito?",
+            options: ["COFS", "COVI", "COMFOSE", "COMFOTER"],
+            correctAnswer: 2
+        },
+        {
+            question: "In quale città ha sede il Centro Addestramento Alpino?",
+            options: ["Bolzano", "Brunico", "Aosta", "Trento"],
+            correctAnswer: 2
+        },
+        {
+            question: "Quale veicolo blindato 8x8 è destinato a sostituire progressivamente i vecchi VCC-2?",
+            options: ["Freccia", "Dardo", "Centauro II", "LINCE 2"],
+            correctAnswer: 0
+        },
+        {
+            question: "Che tipo di arma è il FH-70 in dotazione all'Esercito Italiano?",
+            options: ["Lanciagranate", "Semovente antiaereo", "Obice trainato", "Mortaio da 120mm"],
+            correctAnswer: 2
+        },
+        {
+            question: "Quale componente è responsabile della difesa NBC nell’Esercito?",
+            options: ["Genio", "Trasmissioni", "Brigata Pinerolo", "Reggimento Difesa NBC 'Cremona'"],
+            correctAnswer: 3
+        },
+        {
+            question: "Qual è la funzione principale della Brigata Informazioni Tattiche?",
+            options: ["Controspionaggio", "Raccolta ed elaborazione dati operativi", "Propaganda", "Controllo territorio"],
+            correctAnswer: 1
+        },
+        {
+            question: "Quale tra questi non è un veicolo del genio militare italiano?",
+            options: ["Biber", "Dardo", "Pionierpanzer", "Carro gettaponti"],
+            correctAnswer: 1
+        },
+        {
+            question: "Qual è l'armamento principale del veicolo blindato Centauro II?",
+            options: ["20 mm", "30 mm", "105 mm", "120 mm"],
+            correctAnswer: 3
+        },
+        {
+            question: "Qual è la funzione del Reggimento San Marco, spesso confuso con unità dell'Esercito?",
+            options: ["Fanatica paracadutista", "Unità logistica terrestre", "Forza anfibia della Marina", "Corpo speciale dei Carabinieri"],
+            correctAnswer: 2
+        },
+        {
+            question: "In quale missione internazionale l’Esercito Italiano è stato maggiormente coinvolto negli anni 2000?",
+            options: ["UNIFIL (Libano)", "ISAF (Afghanistan)", "KFOR (Kosovo)", "EUTM (Mali)"],
+            correctAnswer: 1
+        },
+        
     ];
 
     // Funzione per selezionare randomicamente 20 domande
-    function getRandomQuestions(allQuestions, numberOfQuestions = 20) {
-        // Crea una copia dell'array per non modificare l'originale
-        const shuffled = [...allQuestions];
-        
-        // Algoritmo Fisher-Yates per mescolare l'array
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        
-        // Restituisce solo il numero di domande richiesto
-        return shuffled.slice(0, numberOfQuestions);
-    }
-
-    // Variabile globale per le domande del quiz (sarà popolata con 20 domande casuali)
-    let quizData = [];
-
-    // Variabili globali
-    let currentQuestion = 0;
-    let userAnswers = [];
-    let timerInterval;
-    let timeLeft = 20 * 60; // 20 minuti in secondi
-    let userData = {
-        fullName: "",
-        birthDate: "",
-        phoneNumber: ""
-    };
-
-    // URL del webhook Discord (sostituire con l'URL reale)
-    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1378434035776487445/PXpvd4whwOxkL4iGJr83-2ZCsm6WLMeCbeFCaqiTuBCj66i3g7FklgK8rARUKmEzJEj7";
-
-    // Variabili per Discord OAuth2
-    let discordUserData = null;
-    const CLIENT_ID = '1356303106127696094'; // Inserisci il tuo Client ID Discord
-    const REDIRECT_URI = encodeURIComponent(window.location.origin + window.location.pathname);
-    const DISCORD_API_ENDPOINT = 'https://discord.com/api/v10';
-
-    // DOM elements
-    document.addEventListener('DOMContentLoaded', function() {
-        // INIZIALIZZA LE DOMANDE CASUALI ALL'AVVIO
-        quizData = getRandomQuestions(allQuizData, 20);
-        console.log('Domande selezionate:', quizData.length);
-        
-        // Nascondi tutte le sezioni tranne l'autenticazione Discord
-        document.getElementById('quiz-registration').classList.add('hidden');
-        document.getElementById('quiz-registration').classList.remove('active');
-        document.getElementById('quiz-container').classList.add('hidden');
-        document.getElementById('quiz-result').classList.add('hidden');
-        
-        // Mostra solo la sezione di autenticazione Discord
-        const discordAuthSection = document.createElement('div');
-        discordAuthSection.id = 'discord-auth';
-        discordAuthSection.className = 'active';
-        discordAuthSection.innerHTML = `
-            <div class="auth-container">
-                <h3>Accesso Discord Obbligatorio</h3>
-                <p>Per partecipare al test è necessario accedere con il tuo account Discord</p>
-                <p><small>Il test conterrà 20 domande selezionate casualmente</small></p>
-                <button id="discord-login-btn" class="discord-button">
-                    <i class="fa-brands fa-discord"></i> Accedi con Discord
-                </button>
-            </div>
-        `;
-        
-        // Inserisci la sezione di autenticazione prima del modulo di registrazione
-        const quizSection = document.querySelector('.quiz-section .container');
-        quizSection.insertBefore(discordAuthSection, document.getElementById('quiz-registration'));
-        
-        // Aggiungi l'event listener per il pulsante di login Discord
-        document.getElementById('discord-login-btn').addEventListener('click', initiateDiscordLogin);
-        
-        // Controlla se c'è già un token Discord nell'URL
-        checkForDiscordToken();
-        
-        // Elementi del modulo di registrazione
-        const registrationForm = document.getElementById('registration-form');
-        const quizRegistration = document.getElementById('quiz-registration');
-        
-        // Elementi del quiz
-        const quizContainer = document.getElementById('quiz-container');
-        const questionText = document.getElementById('question-text');
-        const questionImageContainer = document.getElementById('question-image-container');
-        const questionImage = document.getElementById('question-image');
-        const currentQuestionElement = document.getElementById('current-question');
-        const totalQuestionsElement = document.getElementById('total-questions');
-        const timerElement = document.getElementById('timer');
-        
-        // Opzioni di risposta
-        const option1Text = document.getElementById('option1-text');
-        const option2Text = document.getElementById('option2-text');
-        const option3Text = document.getElementById('option3-text');
-        const option4Text = document.getElementById('option4-text');
-        
-        // Bottoni di navigazione
-        const prevButton = document.getElementById('prev-question');
-        const nextButton = document.getElementById('next-question');
-        const submitButton = document.getElementById('submit-quiz');
-        
-        // Elementi del risultato
-        const quizResult = document.getElementById('quiz-result');
-        const successMessage = document.getElementById('success-message');
-        const errorMessage = document.getElementById('error-message');
-        
-        // Inizializzazione del quiz - AGGIORNA IL TOTALE DELLE DOMANDE
-        totalQuestionsElement.textContent = quizData.length;
-        
-        // Event Listeners
-        registrationForm.addEventListener('submit', startQuiz);
-        prevButton.addEventListener('click', goToPreviousQuestion);
-        nextButton.addEventListener('click', goToNextQuestion);
-        submitButton.addEventListener('click', submitQuiz);
-        
-        // Aggiunge event listeners per le opzioni radio
-        const radioOptions = document.querySelectorAll('input[name="answer"]');
-        radioOptions.forEach(option => {
-            option.addEventListener('change', function() {
-                saveCurrentAnswer();
-            });
-        });
-        
-        // Funzione per iniziare il login Discord
-        function initiateDiscordLogin() {
-            const oauth2Url = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=identify`;
-            window.location.href = oauth2Url;
-        }
-
-        // Funzione per estrarre il token dall'URL dopo l'autorizzazione
-        function checkForDiscordToken() {
-            const fragment = new URLSearchParams(window.location.hash.slice(1));
-            const accessToken = fragment.get('access_token');
+        function getRandomQuestions(allQuestions, numberOfQuestions = 20) {
+            // Crea una copia dell'array per non modificare l'originale
+            const shuffled = [...allQuestions];
             
-            if (accessToken) {
-                // Rimuovi il token dall'URL per sicurezza
-                history.pushState("", document.title, window.location.pathname + window.location.search);
-                // Ottieni le informazioni dell'utente da Discord
-                fetchDiscordUserInfo(accessToken);
+            // Algoritmo Fisher-Yates per mescolare l'array
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
+            
+            // Restituisce solo il numero di domande richiesto
+            return shuffled.slice(0, numberOfQuestions);
         }
 
-        // Funzione per ottenere i dati dell'utente da Discord API
-        async function fetchDiscordUserInfo(token) {
-            try {
-                const response = await fetch(`${DISCORD_API_ENDPOINT}/users/@me`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
+        // Variabile globale per le domande del quiz (sarà popolata con 20 domande casuali)
+        let quizData = [];
+
+        // Variabili globali
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let timerInterval;
+        let timeLeft = 20 * 60; // 20 minuti in secondi
+        let userData = {
+            fullName: "",
+            birthDate: "",
+            phoneNumber: ""
+        };
+
+        // URL del webhook Discord (sostituire con l'URL reale)
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1378434035776487445/PXpvd4whwOxkL4iGJr83-2ZCsm6WLMeCbeFCaqiTuBCj66i3g7FklgK8rARUKmEzJEj7";
+
+        // Variabili per Discord OAuth2
+        let discordUserData = null;
+        const CLIENT_ID = '1356303106127696094'; // Inserisci il tuo Client ID Discord
+        const REDIRECT_URI = encodeURIComponent(window.location.origin + window.location.pathname);
+        const DISCORD_API_ENDPOINT = 'https://discord.com/api/v10';
+
+        // DOM elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // INIZIALIZZA LE DOMANDE CASUALI ALL'AVVIO
+            quizData = getRandomQuestions(allQuizData, 20);
+            console.log('Domande selezionate:', quizData.length);
+            
+            // Nascondi tutte le sezioni tranne l'autenticazione Discord
+            document.getElementById('quiz-registration').classList.add('hidden');
+            document.getElementById('quiz-registration').classList.remove('active');
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            
+            // Mostra solo la sezione di autenticazione Discord
+            const discordAuthSection = document.createElement('div');
+            discordAuthSection.id = 'discord-auth';
+            discordAuthSection.className = 'active';
+            discordAuthSection.innerHTML = `
+                <div class="auth-container">
+                    <h3>Accesso Discord Obbligatorio</h3>
+                    <p>Per partecipare al test è necessario accedere con il tuo account Discord</p>
+                    <p><small>Il test conterrà 20 domande selezionate casualmente</small></p>
+                    <button id="discord-login-btn" class="discord-button">
+                        <i class="fa-brands fa-discord"></i> Accedi con Discord
+                    </button>
+                </div>
+            `;
+            
+            // Inserisci la sezione di autenticazione prima del modulo di registrazione
+            const quizSection = document.querySelector('.quiz-section .container');
+            quizSection.insertBefore(discordAuthSection, document.getElementById('quiz-registration'));
+            
+            // Aggiungi l'event listener per il pulsante di login Discord
+            document.getElementById('discord-login-btn').addEventListener('click', initiateDiscordLogin);
+            
+            // Controlla se c'è già un token Discord nell'URL
+            checkForDiscordToken();
+            
+            // Elementi del modulo di registrazione
+            const registrationForm = document.getElementById('registration-form');
+            const quizRegistration = document.getElementById('quiz-registration');
+            
+            // Elementi del quiz
+            const quizContainer = document.getElementById('quiz-container');
+            const questionText = document.getElementById('question-text');
+            const questionImageContainer = document.getElementById('question-image-container');
+            const questionImage = document.getElementById('question-image');
+            const currentQuestionElement = document.getElementById('current-question');
+            const totalQuestionsElement = document.getElementById('total-questions');
+            const timerElement = document.getElementById('timer');
+            
+            // Opzioni di risposta
+            const option1Text = document.getElementById('option1-text');
+            const option2Text = document.getElementById('option2-text');
+            const option3Text = document.getElementById('option3-text');
+            const option4Text = document.getElementById('option4-text');
+            
+            // Bottoni di navigazione
+            const prevButton = document.getElementById('prev-question');
+            const nextButton = document.getElementById('next-question');
+            const submitButton = document.getElementById('submit-quiz');
+            
+            // Elementi del risultato
+            const quizResult = document.getElementById('quiz-result');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Inizializzazione del quiz - AGGIORNA IL TOTALE DELLE DOMANDE
+            totalQuestionsElement.textContent = quizData.length;
+            
+            // Event Listeners
+            registrationForm.addEventListener('submit', startQuiz);
+            prevButton.addEventListener('click', goToPreviousQuestion);
+            nextButton.addEventListener('click', goToNextQuestion);
+            submitButton.addEventListener('click', submitQuiz);
+            
+            // Aggiunge event listeners per le opzioni radio
+            const radioOptions = document.querySelectorAll('input[name="answer"]');
+            radioOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    saveCurrentAnswer();
+                });
+            });
+            
+            // Funzione per iniziare il login Discord
+            function initiateDiscordLogin() {
+                const oauth2Url = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=identify`;
+                window.location.href = oauth2Url;
+            }
+
+            // Funzione per estrarre il token dall'URL dopo l'autorizzazione
+            function checkForDiscordToken() {
+                const fragment = new URLSearchParams(window.location.hash.slice(1));
+                const accessToken = fragment.get('access_token');
+                
+                if (accessToken) {
+                    // Rimuovi il token dall'URL per sicurezza
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
+                    // Ottieni le informazioni dell'utente da Discord
+                    fetchDiscordUserInfo(accessToken);
+                }
+            }
+
+            // Funzione per ottenere i dati dell'utente da Discord API
+            async function fetchDiscordUserInfo(token) {
+                try {
+                    const response = await fetch(`${DISCORD_API_ENDPOINT}/users/@me`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        discordUserData = await response.json();
+                        
+                        // Dopo aver ottenuto i dati Discord, passa direttamente alla registrazione
+                        showRegistrationForm();
+                        
+                        // Aggiorna l'interfaccia per mostrare che l'utente è connesso con Discord
+                        const discordInfoHtml = `
+                            <div class="discord-user-connected">
+                                <div class="user-info-container">
+                                    <img src="${getDiscordAvatar()}" alt="Avatar Discord" class="discord-avatar">
+                                    <span class="discord-username">Connesso come: ${discordUserData.username}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Inserisci le informazioni Discord prima del form di registrazione
+                        const registrationForm = document.querySelector('.registration-form');
+                        registrationForm.insertAdjacentHTML('beforebegin', discordInfoHtml);
+                    } else {
+                        console.error('Errore nel recupero delle informazioni utente da Discord');
+                        alert('Si è verificato un errore durante l\'accesso con Discord. Riprova.');
+                    }
+                } catch (error) {
+                    console.error('Errore nella richiesta all\'API Discord:', error);
+                    alert('Si è verificato un errore durante l\'accesso con Discord. Riprova.');
+                }
+            }
+
+            // Funzione per ottenere l'URL dell'avatar Discord
+            function getDiscordAvatar() {
+                if (discordUserData && discordUserData.avatar) {
+                    return `https://cdn.discordapp.com/avatars/${discordUserData.id}/${discordUserData.avatar}.png`;
+                }
+                return '/api/placeholder/100/100'; // Placeholder se non c'è avatar
+            }
+
+            // Funzione per mostrare il modulo di registrazione dopo l'autenticazione Discord
+            function showRegistrationForm() {
+                // Nascondi la sezione di autenticazione Discord
+                document.getElementById('discord-auth').classList.add('hidden');
+                document.getElementById('discord-auth').classList.remove('active');
+                
+                // Mostra il modulo di registrazione
+                document.getElementById('quiz-registration').classList.remove('hidden');
+                document.getElementById('quiz-registration').classList.add('active');
+                
+                // Aggiungi una nota informativa che i dati Discord verranno inviati
+                const noteHtml = `
+                    <div class="discord-note">
+                        <p><small>I tuoi dati Discord (username e ID) verranno registrati insieme ai risultati del test.</small></p>
+                        <p><small><strong>Domande del test: ${quizData.length} selezionate casualmente</strong></small></p>
+                    </div>
+                `;
+                document.querySelector('.registration-form').insertAdjacentHTML('beforeend', noteHtml);
+            }
+            
+            // Funzione per iniziare il quiz
+            function startQuiz(e) {
+                e.preventDefault();
+                
+                // Salva i dati dell'utente
+                userData.fullName = document.getElementById('fullName').value;
+                userData.birthDate = document.getElementById('birthDate').value;
+                userData.phoneNumber = document.getElementById('phoneNumber').value;
+                
+                // Inizializza le risposte dell'utente
+                userAnswers = Array(quizData.length).fill(null);
+                
+                // Nascondi il modulo di registrazione e mostra il quiz
+                quizRegistration.classList.remove('active');
+                quizRegistration.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                quizContainer.classList.add('active');
+                
+                // Carica la prima domanda
+                loadQuestion(0);
+                
+                // Avvia il timer
+                startTimer();
+            }
+            
+            // Funzione per caricare una domanda
+            function loadQuestion(index) {
+                const question = quizData[index];
+                questionText.textContent = question.question;
+                
+                // Gestisci l'immagine della domanda
+                if (question.image && question.image.trim() !== "") {
+                    questionImage.src = question.image;
+                    questionImageContainer.classList.remove('hidden');
+                } else {
+                    questionImageContainer.classList.add('hidden');
+                }
+                
+                // Imposta le opzioni di risposta
+                option1Text.textContent = question.options[0];
+                option2Text.textContent = question.options[1];
+                option3Text.textContent = question.options[2];
+                option4Text.textContent = question.options[3];
+                
+                // Aggiorna l'indicatore del numero di domanda corrente
+                currentQuestionElement.textContent = index + 1;
+                
+                // Carica la risposta salvata (se presente)
+                const radioButtons = document.querySelectorAll('input[name="answer"]');
+                radioButtons.forEach(radio => radio.checked = false);
+                
+                if (userAnswers[index] !== null) {
+                    radioButtons[userAnswers[index]].checked = true;
+                }
+                
+                // Gestisci la visibilità dei pulsanti di navigazione
+                prevButton.style.visibility = index === 0 ? 'hidden' : 'visible';
+                nextButton.style.visibility = index === quizData.length - 1 ? 'hidden' : 'visible';
+                submitButton.style.display = index === quizData.length - 1 ? 'block' : 'none';
+            }
+            
+            // Funzione per andare alla domanda precedente
+            function goToPreviousQuestion() {
+                saveCurrentAnswer();
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    loadQuestion(currentQuestion);
+                }
+            }
+            
+            // Funzione per andare alla domanda successiva
+            function goToNextQuestion() {
+                saveCurrentAnswer();
+                if (currentQuestion < quizData.length - 1) {
+                    currentQuestion++;
+                    loadQuestion(currentQuestion);
+                }
+            }
+            
+            // Funzione per salvare la risposta corrente
+            function saveCurrentAnswer() {
+                const selectedOption = document.querySelector('input[name="answer"]:checked');
+                if (selectedOption) {
+                    userAnswers[currentQuestion] = parseInt(selectedOption.value);
+                }
+            }
+            
+            // Funzione per avviare il timer
+            function startTimer() {
+                timerInterval = setInterval(function() {
+                    timeLeft--;
+                    
+                    // Formatta il tempo rimanente
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Applica stili diversi in base al tempo rimanente
+                    if (timeLeft <= 300 && timeLeft > 60) { // meno di 5 minuti
+                        timerElement.classList.add('timer-warning');
+                    } else if (timeLeft <= 60) { // meno di 1 minuto
+                        timerElement.classList.remove('timer-warning');
+                        timerElement.classList.add('timer-danger');
+                    }
+                    
+                    // Se il tempo è scaduto, termina il quiz
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        submitQuiz();
+                    }
+                }, 1000);
+            }
+            
+            // Funzione per valutare le risposte
+            function evaluateAnswers() {
+                let correctAnswers = 0;
+                let incorrectAnswers = 0;
+                let wrongQuestions = [];
+                
+                quizData.forEach((question, index) => {
+                    const userAnswer = userAnswers[index] === null ? -1 : userAnswers[index];
+                    
+                    if (userAnswer === question.correctAnswer) {
+                        correctAnswers++;
+                    } else {
+                        incorrectAnswers++;
+                        
+                        // Salva le domande sbagliate per il webhook
+                        wrongQuestions.push({
+                            question: question.question,
+                            userAnswer: userAnswer === -1 ? "Nessuna risposta" : question.options[userAnswer],
+                            correctAnswer: question.options[question.correctAnswer]
+                        });
                     }
                 });
                 
-                if (response.ok) {
-                    discordUserData = await response.json();
-                    
-                    // Dopo aver ottenuto i dati Discord, passa direttamente alla registrazione
-                    showRegistrationForm();
-                    
-                    // Aggiorna l'interfaccia per mostrare che l'utente è connesso con Discord
-                    const discordInfoHtml = `
-                        <div class="discord-user-connected">
-                            <div class="user-info-container">
-                                <img src="${getDiscordAvatar()}" alt="Avatar Discord" class="discord-avatar">
-                                <span class="discord-username">Connesso come: ${discordUserData.username}</span>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Inserisci le informazioni Discord prima del form di registrazione
-                    const registrationForm = document.querySelector('.registration-form');
-                    registrationForm.insertAdjacentHTML('beforebegin', discordInfoHtml);
-                } else {
-                    console.error('Errore nel recupero delle informazioni utente da Discord');
-                    alert('Si è verificato un errore durante l\'accesso con Discord. Riprova.');
-                }
-            } catch (error) {
-                console.error('Errore nella richiesta all\'API Discord:', error);
-                alert('Si è verificato un errore durante l\'accesso con Discord. Riprova.');
-            }
-        }
-
-        // Funzione per ottenere l'URL dell'avatar Discord
-        function getDiscordAvatar() {
-            if (discordUserData && discordUserData.avatar) {
-                return `https://cdn.discordapp.com/avatars/${discordUserData.id}/${discordUserData.avatar}.png`;
-            }
-            return '/api/placeholder/100/100'; // Placeholder se non c'è avatar
-        }
-
-        // Funzione per mostrare il modulo di registrazione dopo l'autenticazione Discord
-        function showRegistrationForm() {
-            // Nascondi la sezione di autenticazione Discord
-            document.getElementById('discord-auth').classList.add('hidden');
-            document.getElementById('discord-auth').classList.remove('active');
-            
-            // Mostra il modulo di registrazione
-            document.getElementById('quiz-registration').classList.remove('hidden');
-            document.getElementById('quiz-registration').classList.add('active');
-            
-            // Aggiungi una nota informativa che i dati Discord verranno inviati
-            const noteHtml = `
-                <div class="discord-note">
-                    <p><small>I tuoi dati Discord (username e ID) verranno registrati insieme ai risultati del test.</small></p>
-                    <p><small><strong>Domande del test: ${quizData.length} selezionate casualmente</strong></small></p>
-                </div>
-            `;
-            document.querySelector('.registration-form').insertAdjacentHTML('beforeend', noteHtml);
-        }
-        
-        // Funzione per iniziare il quiz
-        function startQuiz(e) {
-            e.preventDefault();
-            
-            // Salva i dati dell'utente
-            userData.fullName = document.getElementById('fullName').value;
-            userData.birthDate = document.getElementById('birthDate').value;
-            userData.phoneNumber = document.getElementById('phoneNumber').value;
-            
-            // Inizializza le risposte dell'utente
-            userAnswers = Array(quizData.length).fill(null);
-            
-            // Nascondi il modulo di registrazione e mostra il quiz
-            quizRegistration.classList.remove('active');
-            quizRegistration.classList.add('hidden');
-            quizContainer.classList.remove('hidden');
-            quizContainer.classList.add('active');
-            
-            // Carica la prima domanda
-            loadQuestion(0);
-            
-            // Avvia il timer
-            startTimer();
-        }
-        
-        // Funzione per caricare una domanda
-        function loadQuestion(index) {
-            const question = quizData[index];
-            questionText.textContent = question.question;
-            
-            // Gestisci l'immagine della domanda
-            if (question.image && question.image.trim() !== "") {
-                questionImage.src = question.image;
-                questionImageContainer.classList.remove('hidden');
-            } else {
-                questionImageContainer.classList.add('hidden');
-            }
-            
-            // Imposta le opzioni di risposta
-            option1Text.textContent = question.options[0];
-            option2Text.textContent = question.options[1];
-            option3Text.textContent = question.options[2];
-            option4Text.textContent = question.options[3];
-            
-            // Aggiorna l'indicatore del numero di domanda corrente
-            currentQuestionElement.textContent = index + 1;
-            
-            // Carica la risposta salvata (se presente)
-            const radioButtons = document.querySelectorAll('input[name="answer"]');
-            radioButtons.forEach(radio => radio.checked = false);
-            
-            if (userAnswers[index] !== null) {
-                radioButtons[userAnswers[index]].checked = true;
-            }
-            
-            // Gestisci la visibilità dei pulsanti di navigazione
-            prevButton.style.visibility = index === 0 ? 'hidden' : 'visible';
-            nextButton.style.visibility = index === quizData.length - 1 ? 'hidden' : 'visible';
-            submitButton.style.display = index === quizData.length - 1 ? 'block' : 'none';
-        }
-        
-        // Funzione per andare alla domanda precedente
-        function goToPreviousQuestion() {
-            saveCurrentAnswer();
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                loadQuestion(currentQuestion);
-            }
-        }
-        
-        // Funzione per andare alla domanda successiva
-        function goToNextQuestion() {
-            saveCurrentAnswer();
-            if (currentQuestion < quizData.length - 1) {
-                currentQuestion++;
-                loadQuestion(currentQuestion);
-            }
-        }
-        
-        // Funzione per salvare la risposta corrente
-        function saveCurrentAnswer() {
-            const selectedOption = document.querySelector('input[name="answer"]:checked');
-            if (selectedOption) {
-                userAnswers[currentQuestion] = parseInt(selectedOption.value);
-            }
-        }
-        
-        // Funzione per avviare il timer
-        function startTimer() {
-            timerInterval = setInterval(function() {
-                timeLeft--;
-                
-                // Formatta il tempo rimanente
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                // Applica stili diversi in base al tempo rimanente
-                if (timeLeft <= 300 && timeLeft > 60) { // meno di 5 minuti
-                    timerElement.classList.add('timer-warning');
-                } else if (timeLeft <= 60) { // meno di 1 minuto
-                    timerElement.classList.remove('timer-warning');
-                    timerElement.classList.add('timer-danger');
-                }
-                
-                // Se il tempo è scaduto, termina il quiz
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-            }, 1000);
-        }
-        
-        // Funzione per valutare le risposte
-        function evaluateAnswers() {
-            let correctAnswers = 0;
-            let incorrectAnswers = 0;
-            let wrongQuestions = [];
-            
-            quizData.forEach((question, index) => {
-                const userAnswer = userAnswers[index] === null ? -1 : userAnswers[index];
-                
-                if (userAnswer === question.correctAnswer) {
-                    correctAnswers++;
-                } else {
-                    incorrectAnswers++;
-                    
-                    // Salva le domande sbagliate per il webhook
-                    wrongQuestions.push({
-                        question: question.question,
-                        userAnswer: userAnswer === -1 ? "Nessuna risposta" : question.options[userAnswer],
-                        correctAnswer: question.options[question.correctAnswer]
-                    });
-                }
-            });
-            
-            return {
-                correct: correctAnswers,
-                incorrect: incorrectAnswers,
-                wrongQuestions: wrongQuestions
-            };
-        }
-        
-        // Funzione per inviare i risultati tramite webhook
-        async function sendResultsToDiscord(results) {
-            try {
-                const wrongQuestionsFormatted = results.wrongQuestions.map((item, index) => {
-                    return `**Domanda ${index + 1}:** ${item.question}\n` +
-                        `**Risposta data:** ${item.userAnswer}\n` +
-                        `**Risposta corretta:** ${item.correctAnswer}\n`;
-                }).join('\n');
-                
-                // Crea l'embed con i dati Discord sempre inclusi
-                const payload = {
-                    embeds: [{
-                        title: `Risultati Quiz - ${userData.fullName}`,
-                        color: 3447003, // Blu
-                        fields: [
-                            {
-                                name: "Dati Discord",
-                                value: `**Username:** ${discordUserData.username}\n**ID Discord:** ${discordUserData.id}`,
-                                inline: false
-                            },
-                            {
-                                name: "Dati Utente",
-                                value: `**Nome:** ${userData.fullName}\n**Data di Nascita:** ${userData.birthDate}\n**Telefono:** ${userData.phoneNumber}`,
-                                inline: false
-                            },
-                            {
-                                name: "Risultati",
-                                value: `**Risposte Corrette:** ${results.correct}\n**Risposte Errate:** ${results.incorrect}\n**Punteggio:** ${results.correct}/${quizData.length}\n**Domande totali disponibili:** ${allQuizData.length}`,
-                                inline: false
-                            }
-                        ],
-                        timestamp: new Date().toISOString()
-                    }]
+                return {
+                    correct: correctAnswers,
+                    incorrect: incorrectAnswers,
+                    wrongQuestions: wrongQuestions
                 };
-                
-                // Aggiungi le domande sbagliate se ce ne sono
-                if (results.wrongQuestions.length > 0) {
-                    payload.embeds.push({
-                        title: "Domande Sbagliate",
-                        color: 15158332, // Rosso
-                        description: wrongQuestionsFormatted,
-                        timestamp: new Date().toISOString()
-                    });
-                }
-                
-                const response = await fetch(DISCORD_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                return response.ok;
-            } catch (error) {
-                console.error("Errore nell'invio del webhook:", error);
-                return false;
             }
-        }
             
+            // Funzione per inviare i risultati tramite webhook
+            async function sendResultsToDiscord(results) {
+                try {
+                    const wrongQuestionsFormatted = results.wrongQuestions.map((item, index) => {
+                        return `**Domanda ${index + 1}:** ${item.question}\n` +
+                            `**Risposta data:** ${item.userAnswer}\n` +
+                            `**Risposta corretta:** ${item.correctAnswer}\n`;
+                    }).join('\n');
+                    
+                    // Crea l'embed con i dati Discord sempre inclusi
+                    const payload = {
+                        embeds: [{
+                            title: `Risultati Quiz - ${userData.fullName}`,
+                            color: 3447003, // Blu
+                            fields: [
+                                {
+                                    name: "Dati Discord",
+                                    value: `**Username:** ${discordUserData.username}\n**ID Discord:** ${discordUserData.id}`,
+                                    inline: false
+                                },
+                                {
+                                    name: "Dati Utente",
+                                    value: `**Nome:** ${userData.fullName}\n**Data di Nascita:** ${userData.birthDate}\n**Telefono:** ${userData.phoneNumber}`,
+                                    inline: false
+                                },
+                                {
+                                    name: "Risultati",
+                                    value: `**Risposte Corrette:** ${results.correct}\n**Risposte Errate:** ${results.incorrect}\n**Punteggio:** ${results.correct}/${quizData.length}\n**Domande totali disponibili:** ${allQuizData.length}`,
+                                    inline: false
+                                }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    };
+                    
+                    // Aggiungi le domande sbagliate se ce ne sono
+                    if (results.wrongQuestions.length > 0) {
+                        payload.embeds.push({
+                            title: "Domande Sbagliate",
+                            color: 15158332, // Rosso
+                            description: wrongQuestionsFormatted,
+                            timestamp: new Date().toISOString()
+                        });
+                    }
+                    
+                    const response = await fetch(DISCORD_WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    return response.ok;
+                } catch (error) {
+                    console.error("Errore nell'invio del webhook:", error);
+                    return false;
+                }
+            }
+                
             // Funzione per terminare e inviare il quiz
             async function submitQuiz() {
                 // Salva l'ultima risposta
@@ -1810,7 +1895,7 @@
                         <i class="fas fa-check-circle"></i>
                         <h3>Quiz inviato con successo!</h3>
                         <p>Grazie per aver completato il test. I tuoi risultati sono stati registrati.</p>
-                        <p><strong>Punteggio: ${results.correct}/${selectedQuestions.length} (${Math.round((results.correct/selectedQuestions.length)*100)}%)</strong></p>
+                        <p><strong>Punteggio: ${results.correct}/${quizData.length} (${Math.round((results.correct/quizData.length)*100)}%)</strong></p>
                     `;
                     successMessage.style.display = 'block';
                     errorMessage.style.display = 'none';
@@ -1820,7 +1905,7 @@
                         <i class="fas fa-times-circle"></i>
                         <h3>Errore nell'invio del quiz</h3>
                         <p>Si è verificato un errore durante l'invio del test. Per favore, contatta l'assistenza tecnica.</p>
-                        <p><strong>Il tuo punteggio: ${results.correct}/${selectedQuestions.length} (${Math.round((results.correct/selectedQuestions.length)*100)}%)</strong></p>
+                        <p><strong>Il tuo punteggio: ${results.correct}/${quizData.length} (${Math.round((results.correct/quizData.length)*100)}%)</strong></p>
                     `;
                     errorMessage.style.display = 'block';
                 }
@@ -1841,85 +1926,85 @@
                 });
             }
                     
-                    // Funzione per mostrare il prompt della password
-                    function showPasswordPrompt() {
-                        // Crea l'overlay e il modal
-                        const overlay = document.createElement('div');
-                        overlay.className = 'password-overlay';
-                        
-                        const modal = document.createElement('div');
-                        modal.className = 'password-modal';
-                        
-                        // Contenuto del modal
-                        modal.innerHTML = `
-                            <div class="password-header">
-                                <h3>Area Riservata</h3>
-                                <button class="close-button">&times;</button>
-                            </div>
-                            <div class="password-content">
-                                <p>Inserisci la password per accedere al Test Psicologico</p>
-                                <input type="password" id="password-input" placeholder="Password">
-                                <div class="password-error" style="display: none;">Password errata</div>
-                                <button class="password-submit cta-button">Accedi</button>
-                            </div>
-                        `;
-                        
-                        // Aggiungi il modal al DOM
-                        overlay.appendChild(modal);
-                        document.body.appendChild(overlay);
-                        
-                        // Focus automatico sull'input della password
-                        setTimeout(() => {
-                            document.getElementById('password-input').focus();
-                        }, 100);
-                        
-                        // Event Listeners per il modal
-                        
-                        // Chiudi modal quando si clicca sulla X
-                        const closeButton = modal.querySelector('.close-button');
-                        closeButton.addEventListener('click', function() {
-                            document.body.removeChild(overlay);
-                        });
-                        
-                        // Chiudi modal quando si clicca fuori dal modal
-                        overlay.addEventListener('click', function(e) {
-                            if (e.target === overlay) {
-                                document.body.removeChild(overlay);
-                            }
-                        });
-                        
-                        // Gestisci l'invio della password
-                        const submitButton = modal.querySelector('.password-submit');
-                        const passwordInput = document.getElementById('password-input');
-                        const errorMessage = modal.querySelector('.password-error');
-                        
-                        // Funzione per verificare la password
-                        function checkPassword() {
-                            // La password corretta (cambiala con quella che preferisci)
-                            const correctPassword = "MMPI2025";
-                            
-                            if (passwordInput.value === correctPassword) {
-                                // Reindirizza alla pagina se la password è corretta
-                                window.location.href = "EI Minnesota.html";
-                            } else {
-                                // Mostra il messaggio di errore se la password è sbagliata
-                                errorMessage.style.display = 'block';
-                                passwordInput.value = '';
-                                passwordInput.focus();
-                            }
-                        }
-                        
-                        // Controlla la password quando si clicca sul pulsante
-                        submitButton.addEventListener('click', checkPassword);
-                        
-                        // Controlla la password quando si preme Invio
-                        passwordInput.addEventListener('keypress', function(e) {
-                            if (e.key === 'Enter') {
-                                checkPassword();
-                            }
-                        });
+            // Funzione per mostrare il prompt della password
+            function showPasswordPrompt() {
+                // Crea l'overlay e il modal
+                const overlay = document.createElement('div');
+                overlay.className = 'password-overlay';
+                
+                const modal = document.createElement('div');
+                modal.className = 'password-modal';
+                
+                // Contenuto del modal
+                modal.innerHTML = `
+                    <div class="password-header">
+                        <h3>Area Riservata</h3>
+                        <button class="close-button">&times;</button>
+                    </div>
+                    <div class="password-content">
+                        <p>Inserisci la password per accedere al Test Psicologico</p>
+                        <input type="password" id="password-input" placeholder="Password">
+                        <div class="password-error" style="display: none;">Password errata</div>
+                        <button class="password-submit cta-button">Accedi</button>
+                    </div>
+                `;
+                
+                // Aggiungi il modal al DOM
+                overlay.appendChild(modal);
+                document.body.appendChild(overlay);
+                
+                // Focus automatico sull'input della password
+                setTimeout(() => {
+                    document.getElementById('password-input').focus();
+                }, 100);
+                
+                // Event Listeners per il modal
+                
+                // Chiudi modal quando si clicca sulla X
+                const closeButton = modal.querySelector('.close-button');
+                closeButton.addEventListener('click', function() {
+                    document.body.removeChild(overlay);
+                });
+                
+                // Chiudi modal quando si clicca fuori dal modal
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) {
+                        document.body.removeChild(overlay);
                     }
                 });
-        </script>
-    </body>
+                
+                // Gestisci l'invio della password
+                const submitButton = modal.querySelector('.password-submit');
+                const passwordInput = document.getElementById('password-input');
+                const errorMessage = modal.querySelector('.password-error');
+                
+                // Funzione per verificare la password
+                function checkPassword() {
+                    // La password corretta (cambiala con quella che preferisci)
+                    const correctPassword = "MMPI2025";
+                    
+                    if (passwordInput.value === correctPassword) {
+                        // Reindirizza alla pagina se la password è corretta
+                        window.location.href = "EI Minnesota.html";
+                    } else {
+                        // Mostra il messaggio di errore se la password è sbagliata
+                        errorMessage.style.display = 'block';
+                        passwordInput.value = '';
+                        passwordInput.focus();
+                    }
+                }
+                
+                // Controlla la password quando si clicca sul pulsante
+                submitButton.addEventListener('click', checkPassword);
+                
+                // Controlla la password quando si preme Invio
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
 </html>
