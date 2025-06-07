@@ -1479,7 +1479,7 @@
         };
 
         // URL del webhook Discord (sostituire con l'URL reale)
-        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1378434035776487445/PXpvd4whwOxkL4iGJr83-2ZCsm6WLMeCbeFCaqiTuBCj66i3g7FklgK8rARUKmEzJEj7";
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1380698612883001546/CmZ1nHCelhtBeDsFTrOSlKt6LyqD8VD0cgJcHgHKenfyjV6C6r99OhV3l6VS0aIyt84z";
 
         // Variabili per Discord OAuth2
         let discordUserData = null;
@@ -1523,6 +1523,14 @@
             
             // Controlla se c'è già un token Discord nell'URL
             checkForDiscordToken();
+
+            // Controlla se l'utente ha cambiato pagina durante il quiz
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    visibilityChangeCount++;
+                    console.log("Scheda non attiva. Conteggio:", visibilityChangeCount);
+                }
+            });
             
             // Elementi del modulo di registrazione
             const registrationForm = document.getElementById('registration-form');
@@ -1816,6 +1824,11 @@
                                 {
                                     name: "Dati Discord",
                                     value: `**Username:** ${discordUserData.username}\n**ID Discord:** ${discordUserData.id}`,
+                                    inline: false
+                                },
+                                {
+                                    name: "Comportamento Utente",
+                                    value: `**Cambi di scheda/minimizzazione:** ${visibilityChangeCount}`,
                                     inline: false
                                 },
                                 {
